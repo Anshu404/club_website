@@ -3,23 +3,18 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import Image from "next/image";
-import { Blog } from "@/types/blog"; // Blog type ko import karein
+import { TeamImageGallery } from "./teamData"; // teamData se type import karein
 
-// Swiper ke styles ko import karna zaroori hai
+// Swiper ke styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
 
-// --- YAHAN CHANGE HAI ---
-// Component ab 'images' ka array nahi, balki poora 'imageGallery' object leta hai.
-const ImageSlider = ({ imageGallery }: { imageGallery: Blog["imageGallery"] }) => {
-  
-  // --- YEH HAI SMART LOGIC ---
-  // Yeh code 'imageGallery' object se dynamically saare image paths banata hai.
-  // Example: Agar count: 3 hai, to yeh [..., "1.jpg", "2.jpg", "3.jpg"] ka array banayega.
+const ImageSlider = ({ imageGallery }: { imageGallery: TeamImageGallery }) => {
+  // Logic bilkul same hai, bas '/images/team/' ka path use hoga
   const images = Array.from(
     { length: imageGallery.count },
-    (_, i) => `/images/activities/${imageGallery.folder}/${i + 1}.${imageGallery.fileType}`
+    (_, i) => `/images/team/${imageGallery.folder}/${i + 1}.${imageGallery.fileType}`
   );
 
   return (
@@ -41,7 +36,7 @@ const ImageSlider = ({ imageGallery }: { imageGallery: Blog["imageGallery"] }) =
             <div className="relative aspect-[97/50] w-full">
               <Image
                 src={src}
-                alt={`Activity image ${index + 1}`}
+                alt={`Member image ${index + 1}`}
                 fill
                 className="object-cover"
               />
