@@ -58,8 +58,6 @@
 
 
 
-
-
 import { Blog } from "@/types/blog";
 import Image from "next/image";
 import Link from "next/link";
@@ -67,7 +65,7 @@ import Link from "next/link";
 const ActivityCard = ({ blog }: { blog: Blog }) => {
   const { slug, title, paragraph, author, tags, imageGallery } = blog;
 
-  // Thumbnail URL (auto folder + first image)
+  // Thumbnail: first image in folder
   const thumbnailUrl = `/images/activities/${imageGallery.folder}/1.${imageGallery.fileType}`;
 
   return (
@@ -80,7 +78,6 @@ const ActivityCard = ({ blog }: { blog: Blog }) => {
           {tags[0]}
         </span>
 
-        {/* Thumbnail Image */}
         <Image src={thumbnailUrl} alt={title} fill className="object-cover" />
       </Link>
 
@@ -88,7 +85,7 @@ const ActivityCard = ({ blog }: { blog: Blog }) => {
         <h3>
           <Link
             href={`/activities/${slug}`}
-            className="mb-4 block text-xl font-bold text-black hover:text-primary dark:text-white dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl min-h-[56px] line-clamp-2"
+            className="mb-4 block text-xl font-bold text-black hover:text-primary dark:text-white dark:hover:text-primary min-h-[56px] line-clamp-2"
           >
             {title}
           </Link>
@@ -98,11 +95,11 @@ const ActivityCard = ({ blog }: { blog: Blog }) => {
           {paragraph}
         </p>
 
-        {/* Author */}
+        {/* AUTHOR */}
         <div className="flex items-center">
           <div className="mr-4 h-10 w-10 overflow-hidden rounded-full">
             <Image
-              src={author.imageLight}   // ⭐ FIXED — NO ERROR
+              src={author.imageLight}   // ⭐ Main FIX — no TypeScript error
               width={40}
               height={40}
               alt={author.name}
