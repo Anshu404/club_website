@@ -57,7 +57,6 @@
 // export default ActivityCard;
 
 
-
 import { Blog } from "@/types/blog";
 import Image from "next/image";
 import Link from "next/link";
@@ -65,7 +64,6 @@ import Link from "next/link";
 const ActivityCard = ({ blog }: { blog: Blog }) => {
   const { slug, title, paragraph, author, tags, imageGallery } = blog;
 
-  // Thumbnail: first image in folder
   const thumbnailUrl = `/images/activities/${imageGallery.folder}/1.${imageGallery.fileType}`;
 
   return (
@@ -99,7 +97,7 @@ const ActivityCard = ({ blog }: { blog: Blog }) => {
         <div className="flex items-center">
           <div className="mr-4 h-10 w-10 overflow-hidden rounded-full">
             <Image
-              src={author.imageLight}   // ⭐ Main FIX — no TypeScript error
+              src={author.imageLight}  // ⭐ THE REAL FIX
               width={40}
               height={40}
               alt={author.name}
